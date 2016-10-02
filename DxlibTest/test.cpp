@@ -1,5 +1,7 @@
 #include "DxLib.h"
 
+#define PI 3.141592653
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);//ウィンドウモード変更と初期化と裏画面設定
 
@@ -18,8 +20,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		}
 
 		//裏絵画
-		DrawGraph(x/2, 100, GrHandle00, TRUE);//メモリにロードしたやつを表示
-		DrawGraph(x, 50, GrHandle01, TRUE);//メモリにロードしたやつを表示
+		//DrawGraph(x/2, 200, GrHandle00, TRUE);//メモリにロードしたやつを表示
+		//DrawGraph(x, 50, GrHandle01, TRUE);//メモリにロードしたやつを表示
+
+		DrawRotaGraph(x, 200, 1.0, 0.0, GrHandle00, TRUE);
+		DrawRotaGraph(x/2, 200, 2.0, PI/4, GrHandle00, TRUE);
 
 
 		//計算
