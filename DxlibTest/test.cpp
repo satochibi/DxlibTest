@@ -10,6 +10,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 	int x = 50;
+	int y = 10;
 
 	while (ScreenFlip()==0 && ProcessMessage()==0 && ClearDrawScreen() == 0)
 	{
@@ -31,11 +32,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		SetDrawBlendMode(DX_BLENDMODE_ADD, 255);//加算
 		DrawRotaGraph(x, 300, 1.0, 0.0, GrHandle00, TRUE);
-		
 
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);//デフォルト
+
+		
+		int Col = GetColor(255, 255, 255);
+		DrawFormatString(x, y, Col, "Point[%d, %d]", x, y);
 
 		//計算
 		x++;
+		y++;
 	}
 
 	//WaitKey();//キー入力待ち
