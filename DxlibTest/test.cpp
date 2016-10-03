@@ -7,6 +7,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	int GrHandle00 = LoadGraph("img/01.png");//メモリへロード
 	int GrHandle01 = LoadGraph("img/02.png");
+	int image[16];
+	LoadDivGraph("img/char.png", 16, 4, 4, 32, 32, image);//画像分割ロード
 
 	int SHandle = LoadSoundMem("snd/00.wav");
 
@@ -48,8 +50,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		if (flame % (60*5) == 0)
 		{
-			PlaySoundMem(SHandle, DX_PLAYTYPE_BACK);
+			PlaySoundMem(SHandle, DX_PLAYTYPE_BACK);//再生
 		}
+
+
+		DrawGraph(400, 400, image[flame%16], TRUE);
 
 		//計算
 		x++;
