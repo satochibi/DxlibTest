@@ -39,6 +39,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		int Col = GetColor(255, 255, 255);
 		DrawFormatString(x, y, Col, "Point[%d, %d]", x, y);
 
+		DrawFormatString(100, 100, Col, "%d", GetRand(4));//—” seed‚Í©“®‚Å—^‚¦‚ç‚ê‚é‚Ì‚Ål—¶‚µ‚È‚­‚Ä‚æ‚¢
+
+
+
 		//ŒvZ
 		x++;
 		y++;
