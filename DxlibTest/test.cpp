@@ -23,8 +23,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//DrawGraph(x/2, 200, GrHandle00, TRUE);//メモリにロードしたやつを表示
 		//DrawGraph(x, 50, GrHandle01, TRUE);//メモリにロードしたやつを表示
 
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);//デフォルト
+		DrawRotaGraph(x / 2, 200, 2.0, PI / 4, GrHandle00, TRUE);
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);//透過
 		DrawRotaGraph(x, 200, 1.0, 0.0, GrHandle00, TRUE);
-		DrawRotaGraph(x/2, 200, 2.0, PI/4, GrHandle00, TRUE);
+
+		SetDrawBlendMode(DX_BLENDMODE_ADD, 255);//加算
+		DrawRotaGraph(x, 300, 1.0, 0.0, GrHandle00, TRUE);
+		
 
 
 		//計算
