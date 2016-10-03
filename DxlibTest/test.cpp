@@ -2,6 +2,26 @@
 
 #define PI 3.141592653
 
+
+int Key[256];
+
+int gpUpdateKey() {
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++)
+	{
+		if (tmpKey[i] != 0)
+		{
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
+	return 0;
+}
+
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);//ウィンドウモード変更と初期化と裏画面設定
 
@@ -16,10 +36,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int x = 50;
 	int y = 10;
 
-	while (ScreenFlip()==0 && ProcessMessage()==0 && ClearDrawScreen() == 0)
+	while (ScreenFlip()==0 && ProcessMessage()==0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0)
 	{
 		//Escが押されたらループを抜ける
-		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+		if (Key[KEY_INPUT_ESCAPE] == 1)
 		{
 			break;
 		}
@@ -50,14 +70,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		if (flame % (60*5) == 0)
 		{
-			PlaySoundMem(SHandle, DX_PLAYTYPE_BACK);//再生
+			//PlaySoundMem(SHandle, DX_PLAYTYPE_BACK);//再生
+		}
+
+		if (Key[KEY_INPUT_RIGHT] == 1)
+		{
+			x += 50;
 		}
 
 
 		DrawGraph(400, 400, image[flame%16], TRUE);
 
 		//計算
-		x++;
+		//x++;
 		y++;
 		flame++;
 	}
